@@ -20,10 +20,7 @@ public class Utilisateur {
     private String motDePasse;
     private String role; // Exemple : "ADMIN", "CLIENT"
 
-    /**
-     * 🔹 Relation avec Reservation :
-     * Un utilisateur (client) peut faire plusieurs réservations.
-     */
+    
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
     private Set<Reservation> reservations = new HashSet<>();
 
@@ -37,7 +34,7 @@ public class Utilisateur {
         this.role = role;
     }
 
-    // 🔹 Getters et Setters
+   
     public Long getIdUtilisateur() {
         return idUtilisateur;
     }
