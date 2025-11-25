@@ -10,17 +10,12 @@ public class Embarquement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmbarquement;
 
-    private String porte; // Ex: Gate A12
-    private String zone;  // Ex: Zone 3
+    private String porte;
+    private String zone;  
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date heureEmbarquement;
 
-    /**
-     * 🔹 Relation avec Billet :
-     * Un embarquement correspond à UN SEUL billet,
-     * mais un billet peut avoir UN embarquement.
-     */
     @OneToOne
     @JoinColumn(name = "id_billet", nullable = false)
     private Billet billet;
@@ -35,7 +30,7 @@ public class Embarquement {
         this.billet = billet;
     }
 
-    // 🔹 Getters & Setters
+   
     public Long getIdEmbarquement() {
         return idEmbarquement;
     }
