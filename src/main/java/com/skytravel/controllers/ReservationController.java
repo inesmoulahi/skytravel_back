@@ -10,13 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reservations")
-@CrossOrigin(origins = "http://localhost:4200") // autorise les requêtes Angular
+@CrossOrigin(origins = "http://localhost:4200") 
 public class ReservationController {
 
     @Autowired
     private ReservationService reservationService;
 
-    // ➕ Ajouter une réservation
     @PostMapping("/ajouter")
     public ResponseEntity<Reservation> ajouterReservation(@RequestBody Reservation reservation) {
         try {
@@ -27,14 +26,12 @@ public class ReservationController {
         }
     }
 
-    // 📜 Afficher toutes les réservations
     @GetMapping("/liste")
     public ResponseEntity<List<Reservation>> afficherToutesLesReservations() {
         List<Reservation> reservations = reservationService.afficherToutesLesReservations();
         return ResponseEntity.ok(reservations);
     }
 
-    // 🔍 Trouver une réservation par ID
     @GetMapping("/{id}")
     public ResponseEntity<Reservation> trouverReservationParId(@PathVariable Long id) {
         return reservationService.trouverReservationParId(id)
@@ -42,7 +39,6 @@ public class ReservationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // ✏️ Modifier une réservation
     @PutMapping("/modifier/{id}")
     public ResponseEntity<Reservation> modifierReservation(@PathVariable Long id, @RequestBody Reservation reservation) {
         try {
@@ -53,7 +49,6 @@ public class ReservationController {
         }
     }
 
-    // ❌ Supprimer une réservation
     @DeleteMapping("/supprimer/{id}")
     public ResponseEntity<Void> supprimerReservation(@PathVariable Long id) {
         try {
