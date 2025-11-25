@@ -17,11 +17,6 @@ public class Billet {
 
     private double prixTotal;
 
-    /**
-     * 🔹 Relation avec Reservation :
-     * Un billet est lié à UNE réservation,
-     * mais une réservation peut avoir PLUSIEURS billets.
-     */
     @ManyToOne
     @JoinColumn(name = "id_reservation", nullable = false)
     private Reservation reservation;
