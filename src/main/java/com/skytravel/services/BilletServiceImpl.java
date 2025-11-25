@@ -23,17 +23,16 @@ public class BilletServiceImpl implements BilletService {
 
     @Override
     public Billet ajouterBillet(Billet billet) {
-        // 🔹 On vérifie si une réservation existe bien avec l'ID fourni
+        
         if (billet.getReservation() != null && billet.getReservation().getIdReservation() != null) {
             Reservation reservation = reservationRepository.findById(billet.getReservation().getIdReservation())
                     .orElseThrow(() -> new RuntimeException("Réservation introuvable"));
             billet.setReservation(reservation); // lie la réservation complète
         }
 
-        // 🔹 Ajout des autres informations automatiques
+       
         billet.setDateEmission(new Date());
-        billet.setNumeroBillet(UUID.randomUUID().toString()); // numéro unique automatique
-
+        billet.setNumeroBillet(UUID.randomUUID().toString()); 
         return billetRepository.save(billet);
     }
 
@@ -54,7 +53,7 @@ public class BilletServiceImpl implements BilletService {
 
         existant.setPrixTotal(billet.getPrixTotal());
 
-        // 🔹 Mettre à jour la réservation liée si nécessaire
+       
         if (billet.getReservation() != null && billet.getReservation().getIdReservation() != null) {
             Reservation reservation = reservationRepository.findById(billet.getReservation().getIdReservation())
                     .orElseThrow(() -> new RuntimeException("Réservation introuvable"));
