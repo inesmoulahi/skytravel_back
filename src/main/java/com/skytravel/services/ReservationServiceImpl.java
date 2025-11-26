@@ -27,7 +27,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Reservation ajouterReservation(Reservation reservation) {
-        // Vérifier si les IDs existent
+       
         Long idPassager = reservation.getPassager() != null ? reservation.getPassager().getIdPassager() : null;
         Long idVol = reservation.getVol() != null ? reservation.getVol().getIdVol() : null;
 
@@ -35,21 +35,21 @@ public class ReservationServiceImpl implements ReservationService {
             throw new RuntimeException("Le passager ou le vol n'ont pas été spécifiés.");
         }
 
-        // Charger les objets complets depuis la base
+       
         Passager passager = passagerRepository.findById(idPassager)
                 .orElseThrow(() -> new RuntimeException("Passager introuvable (ID: " + idPassager + ")"));
         Vol vol = volRepository.findById(idVol)
                 .orElseThrow(() -> new RuntimeException("Vol introuvable (ID: " + idVol + ")"));
 
-        // Associer les entités à la réservation
+       
         reservation.setPassager(passager);
         reservation.setVol(vol);
-        reservation.setDateReservation(new Date()); // Date actuelle
+        reservation.setDateReservation(new Date());
 
-        // Sauvegarde
+     
         Reservation savedReservation = reservationRepository.save(reservation);
 
-        // Retourner la réservation complète
+        
         savedReservation.setPassager(passager);
         savedReservation.setVol(vol);
         return savedReservation;
