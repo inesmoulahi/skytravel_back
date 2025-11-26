@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service  // 🔹 Indique à Spring Boot que cette classe contient la logique métier
+@Service 
 public class PassagerServiceImpl implements PassagerService {
 
     @Autowired
-    private PassagerRepository passagerRepository; // 🔹 Injection du repository
+    private PassagerRepository passagerRepository;
 
     @Override
     public Passager ajouterPassager(Passager passager) {
